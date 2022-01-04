@@ -1,0 +1,16 @@
+version: "3"
+
+vars:
+  IMAGE_NAME: skurtzemann/curl
+  IMAGE_TAG: 7.80.0-1
+  IMAGE: "{{.IMAGE_NAME}}:{{.IMAGE_TAG}}"
+
+tasks:
+  build:
+  - docker build -t {{.IMAGE}} .
+
+  push:
+  - docker push {{.IMAGE}}
+
+  scan:
+  - trivy image {{.IMAGE}} 
